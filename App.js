@@ -1,12 +1,28 @@
-import { StatusBar } from 'expo-status-bar';
+import { useState } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Button, Image, Text, View } from 'react-native';
 
 export default function App() {
+  const [isTaskDone, setIsTaskDone] = React.useState(false)
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <View style={{flex: 1}} />
+      <View style={{flex: 1, alignItems: 'center', justifyContent: 'space-evenly'}}>
+        <Text style={{fontSize: 20}}>
+          Has someone walked the dog?
+        </Text>
+        <Image source={require('./assets/dog.png')} />
+      </View>
+      <View style={{flex: 1}}>
+        <Button
+          onPress={() => {
+            setIsTaskDone(!isTaskDone);
+          }}
+          color= {(isTaskDone) ? "#a1d76f" : "#d15555"}
+          title= {(isTaskDone) ? "Task Completed" : "Complete Task"}
+        />
+      </View>
     </View>
   );
 }
