@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Button, Image, Text, View } from 'react-native';
+import CompleteTaskButton from './CompleteTaskButton'
 
 export default function App() {
   const [isTaskDone, setIsTaskDone] = React.useState(false)
@@ -14,13 +15,7 @@ export default function App() {
         <Image source={require('./assets/dog.png')} />
       </View>
       <View style={{flex: 1}}>
-        <Button
-          onPress={() => {
-            setIsTaskDone(!isTaskDone);
-          }}
-          color= {(isTaskDone) ? "#a1d76f" : "#d15555"}
-          title= {(isTaskDone) ? "Task Completed" : "Complete Task"}
-        />
+        <CompleteTaskButton completed={false} />
       </View>
     </View>
   );
