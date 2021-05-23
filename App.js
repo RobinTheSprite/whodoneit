@@ -17,8 +17,8 @@ export default function App() {
         </Text>
         <Image source={require('./assets/dog.png')} />
       </View>
-      <View style={[styles.container, {flex: 1}]}>
-        <CompleteTaskButton style={{flex: 1}} completed={taskState.completed} />
+      <View style={styles.container}>
+        <CompleteTaskButton completed={taskState.completed} />
       </View>
       <View style={{flex: 2}}>
         <Text style={{fontSize: 18}}>
