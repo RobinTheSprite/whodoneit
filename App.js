@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Image, Text, View } from 'react-native';
+import { StyleSheet, Image, Text, View, TextInput } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { CompleteTaskButton } from './CompleteTaskButton'
@@ -34,7 +34,8 @@ function HomeScreen() {
 function SettingsScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings!</Text>
+      <Text>Your Name: </Text>
+      <TextInput style={styles.textField} />
     </View>
   );
 }
@@ -59,4 +60,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-evenly'
   },
+  textField: {
+    borderColor: 'gray',
+    borderWidth: 1,
+    width: '50%',
+    height: 40,
+    textAlign: 'center'
+  }
 });
