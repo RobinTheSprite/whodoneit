@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Button, Image, Text, View } from 'react-native';
+import { Button } from 'react-native';
 
 export function CompleteTaskButton(props) {
     const [isTaskDone, setIsTaskDone] = React.useState(props.completed);
