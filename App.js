@@ -20,7 +20,7 @@ function HomeScreen() {
         <Image source={require('./assets/dog.png')} />
       </View>
       <View style={styles.container}>
-        {/* <CompleteTaskButton completed={taskState.completed} /> */}
+        <CompleteTaskButton completed={taskState.completed} />
       </View>
       <View style={{flex: 2}}>
         <Text style={{fontSize: 18}}>

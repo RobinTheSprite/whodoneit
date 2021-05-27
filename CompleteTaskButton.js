@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Button, Image, Text, View } from 'react-native';
 
-export default function CompleteTaskButton(props) {
+export function CompleteTaskButton(props) {
     const [isTaskDone, setIsTaskDone] = React.useState(props.completed);
 
     return (
