@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import CompleteTaskButton from './CompleteTaskButton';
-import { StyleSheet, Image, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Image, Text, View} from 'react-native';
 
 function WhoCompleted(props) {
     if (props.taskState.completed) {
