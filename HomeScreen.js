@@ -38,7 +38,7 @@ export default function HomeScreen() {
             <View style={[styles.container, { flex: 3 }]}>
                 <Text style={{ fontSize: 20 }}>
                     Has someone walked the dog?
-          </Text>
+                </Text>
                 <Image source={require('./assets/dog.png')} />
             </View>
             <View style={styles.container}>
