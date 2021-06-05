@@ -1,3 +1,4 @@
+import React from 'react';
 import { Text, View, TextInput } from 'react-native';
 
 export default function SettingsScreen() {
@@ -13,3 +14,18 @@ export default function SettingsScreen() {
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'space-evenly'
+    },
+    textField: {
+        borderColor: 'gray',
+        borderWidth: 1,
+        width: '50%',
+        height: 40,
+        textAlign: 'center'
+    }
+});
