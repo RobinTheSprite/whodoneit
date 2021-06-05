@@ -1,15 +1,39 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Image, Text, View, TextInput } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { CompleteTaskButton } from './CompleteTaskButton'
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { CompleteTaskButton } from './CompleteTaskButton';
 
-function getTaskState() {
-  return {completed: true, whoCompleted: "Luke"};
+function WhoCompleted(props) {
+  if (props.taskState.completed) {
+    return (
+      <Text style={{fontSize: 18}}>
+        {props.taskState.whoCompleted} walked the dog
+      </Text>
+    )
+  } else {
+    return (
+      <Text style={{fontSize: 18}} />
+    )
+  }
 }
 
 function HomeScreen() {
-  const taskState = getTaskState();
+  const [taskState, setTaskState] = useState({});
+
+  useEffect(() => {
+    fetch('https://rvr4du7q0j.execute-api.us-east-2.amazonaws.com/dev/gettask', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      }
+    )
+    .then(res => res.json())
+    .then(data => setTaskState(data.body))
+    .catch(error => console.error(error))
+  });
+
 
   return (
     <View style={styles.container}>
@@ -23,19 +47,22 @@ function HomeScreen() {
         <CompleteTaskButton completed={taskState.completed} />
       </View>
       <View style={{flex: 2}}>
-        <Text style={{fontSize: 18}}>
-          {taskState.whoCompleted} walked the dog
-        </Text>
+        <WhoCompleted taskState={taskState} />
       </View>
     </View>
   );
 }
 
 function SettingsScreen() {
+  const [name, setName] = React.useState('');
+
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Your Name: </Text>
-      <TextInput style={styles.textField} />
+      <TextInput
+        style={styles.textField}
+        onChangeText={text => setName(text)}
+      />
     </View>
   );
 }
