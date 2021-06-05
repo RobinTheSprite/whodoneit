@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TextInput } from 'react-native';
 
 export default function SettingsScreen() {
     const [name, setName] = React.useState('');
