@@ -42,7 +42,7 @@ export default function HomeScreen() {
                 <Image source={require('./assets/dog.png')} />
             </View>
             <View style={styles.container}>
-                <CompleteTaskButton completed={taskState.completed} />
+                <CompleteTaskButton taskState={taskState} />
             </View>
             <View style={{ flex: 2 }}>
                 <WhoCompleted taskState={taskState} />
