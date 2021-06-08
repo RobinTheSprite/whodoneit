@@ -18,7 +18,7 @@ export default function CompleteTaskButton(props) {
                   },
                   body: JSON.stringify({
                     completed: true,
-                    whoCompleted: 'Zaphod'
+                    whoCompleted: username
                   })
                 })
                 .then(res => res.json())

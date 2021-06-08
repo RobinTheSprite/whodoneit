@@ -12,10 +12,10 @@ export default class App extends React.Component {
   constructor() {
     super();
 
-    this.setUsername = () => {
-      this.setState(name => ({
+    this.setUsername = (name) => {
+      this.setState({
         username: name
-      }));
+      });
     };
 
     this.state = {
