@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import CompleteTaskButton from './CompleteTaskButton';
-import { StyleSheet, Image, Text, View} from 'react-native';
+import { StyleSheet, Image, Text, View } from 'react-native';
 
 function WhoCompleted(props) {
     if (props.taskState.completed) {
@@ -16,39 +16,49 @@ function WhoCompleted(props) {
     }
 }
 
-export default function HomeScreen() {
-    const [taskState, setTaskState] = useState({});
+export default class HomeScreen extends React.Component {
 
-    useEffect(() => {
-        fetch('https://rvr4du7q0j.execute-api.us-east-2.amazonaws.com/dev/gettask', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        }
-        )
-            .then(res => res.json())
-            .then(data => setTaskState(data.body))
-            .catch(error => console.error(error))
-    });
+    constructor() {
+        super();
 
+        this.socket = new WebSocket();
 
-    return (
-        <View style={styles.container}>
-            <View style={[styles.container, { flex: 3 }]}>
-                <Text style={{ fontSize: 20 }}>
-                    Has someone walked the dog?
-                </Text>
-                <Image source={require('./assets/dog.png')} />
-            </View>
+        this.state = {completed: false, whoCompleted: '', socket: this.socket};
+    }
+
+    componentDidMount() {
+        this.socket.onopen = () => {
+            this.socket.send(JSON.stringify({
+                action: 'getTask'
+            }));
+        };
+
+        this.socket.onmessage = event => {
+            const data = JSON.parse(event.data);
+            console.log("Response received: ", data);
+            this.setState(data);
+        };
+    }
+
+    render() {
+        return (
             <View style={styles.container}>
-                <CompleteTaskButton taskState={taskState} />
+                <View style={[styles.container, { flex: 3 }]}>
+                    <Text style={{ fontSize: 20 }}>
+                        Has someone walked the dog?
+                    </Text>
+                    <Image source={require('./assets/dog.png')} />
+                </View>
+                <View style={styles.container}>
+                    <CompleteTaskButton taskState={this.state} socket={this.socket}/>
+                </View>
+                <View style={{ flex: 2 }}>
+                    <WhoCompleted taskState={this.state} />
+                </View>
             </View>
-            <View style={{ flex: 2 }}>
-                <WhoCompleted taskState={taskState} />
-            </View>
-        </View>
-    );
+        );
+    }
+
 }
 
 const styles = StyleSheet.create({
