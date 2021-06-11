@@ -1,3 +1,3 @@
 import React from 'react';
 
-export default UserContext = React.createContext({username: '', setUsername: () => {}});
+export default React.createContext({username: '', setUsername: () => {}});
